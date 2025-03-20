@@ -25,30 +25,63 @@
     <section id="dashboard">
         <h2>Energy Dashboard</h2>
         <div class="dashboard-container">
-            <div class="card" id="consumption">
+            <div class="card">
                 <h3>Consumption</h3>
                 <p><span id="consumption-value">--</span> MW</p>
+                <p id="consumption-confidence"></p>
             </div>
-            <div class="card" id="production">
+            <div class="card">
                 <h3>Production</h3>
                 <p><span id="production-value">--</span> MW</p>
+                <p id="production-confidence"></p>
             </div>
-            <div class="card" id="prediction">
-                <h3>AI Prediction</h3>
-                <p><span id="prediction-value">--</span> MW</p>
+            <div class="card">
+                <h3>Nuclear</h3>
+                <p><span id="nuclear-value">--</span> MW</p>
+                <p id="nuclear-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Wind</h3>
+                <p><span id="wind-value">--</span> MW</p>
+                <p id="wind-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Hydroelectric</h3>
+                <p><span id="hydroelectric-value">--</span> MW</p>
+                <p id="hydroelectric-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Oil and Gas</h3>
+                <p><span id="oil and gas-value">--</span> MW</p>
+                <p id="oil and gas-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Coal</h3>
+                <p><span id="coal-value">--</span> MW</p>
+                <p id="coal-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Solar</h3>
+                <p><span id="solar-value">--</span> MW</p>
+                <p id="solar-confidence"></p>
+            </div>
+            <div class="card">
+                <h3>Biomass</h3>
+                <p><span id="biomass-value">--</span> MW</p>
+                <p id="biomass-confidence"></p>
             </div>
         </div>
     </section>
-
+    
     <section id="forecasts">
         <h2>Energy Forecast</h2>
         <form id="prediction-form">
-            <label for="feature-input">Enter Features:</label>
+            <label for="feature-input">Enter Features (comma-separated, 9 values):</label>
             <input type="text" id="feature-input" required>
             <button type="submit">Predict</button>
         </form>
-        <p id="prediction-result"></p>
     </section>
+    
 
     <footer>
         <p>&copy; 2025 PowerSpring. All Rights Reserved.</p>

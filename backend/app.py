@@ -2,9 +2,11 @@ from flask import Flask, request, jsonify
 import numpy as np
 import tensorflow as tf
 import joblib
+from flask_cors import CORS
 from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
+CORS(app)
 
 # Load trained model and scaler
 custom_objects = {"mse": tf.keras.losses.MeanSquaredError()}
