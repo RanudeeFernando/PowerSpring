@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerSpring Dashboard</title>
+    <link rel="icon" type="image/png" href="images/logos/logo2.png">
+    <link rel="stylesheet" href="dash-styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="images/logos/logo2.png" alt="PowerSpring Logo" class="logo">
+                <img src="images/logos/logo5.png" alt="PowerSpring Logo" class="logo-text">
+            </div>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#forecasts">Forecasts</a></li>
+                <li><a href="main.html#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="dashboard">
+        <h2>Energy Dashboard</h2>
+        <div class="dashboard-container">
+            <div class="card" id="consumption">
+                <h3>Consumption</h3>
+                <p><span id="consumption-value">--</span> MW</p>
+            </div>
+            <div class="card" id="production">
+                <h3>Production</h3>
+                <p><span id="production-value">--</span> MW</p>
+            </div>
+            <div class="card" id="prediction">
+                <h3>AI Prediction</h3>
+                <p><span id="prediction-value">--</span> MW</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="forecasts">
+        <h2>Energy Forecast</h2>
+        <form id="prediction-form">
+            <label for="feature-input">Enter Features:</label>
+            <input type="text" id="feature-input" required>
+            <button type="submit">Predict</button>
+        </form>
+        <p id="prediction-result"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 PowerSpring. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
