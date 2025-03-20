@@ -1,0 +1,327 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a192f; /* Deep Blue (Inspired by the Logo) */
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section */
+#hero {
+    height: 100vh; /* Full-screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('images/beautiful-view-wind-turbines-grass-covered-field-captured-holland.jpg') center/cover no-repeat;
+    text-align: center;
+    position: relative;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Make sure it's BELOW the buttons */
+}
+
+
+#hero h1,
+#hero p {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#hero p {
+    font-size: 1.35rem;
+    padding: 20px;
+}
+
+/* CTA Buttons */
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    z-index: 100 !important; /* FORCE IT ON TOP */
+}
+
+.btn {
+    background-color: #2ec4b6;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    z-index: 3 !important; /* SUPER FORCE IT ON TOP */
+    position: relative;
+}
+
+
+.btn:hover {
+    background-color: #219a9a;
+    transform: scale(1.05);
+}
+
+.btn {
+    visibility: visible !important;
+    pointer-events: auto !important; /* FORCE CLICKABILITY */
+}
+
+/* Sections */
+section {
+    padding: 60px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* AI-Powered Energy Prediction */
+#ai-prediction {
+    text-align: center;
+    flex-direction: column;
+}
+
+#ai-prediction h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+#ai-prediction p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#ai-prediction img {
+    width: 50%;
+    border-radius: 12px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    position: relative;  /* Ensure relative positioning */
+    width: 200%;  
+    height: 500px; 
+    overflow: hidden; /* Hide overflowing images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual slides */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+
+
+/* Energy Sources Section */
+#energy-sources {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 60px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything is centered */
+    justify-content: flex-start; /* Pushes the heading to the top */
+    text-align: center;
+}
+
+/* Heading - Make sure it stays at the top */
+#energy-sources h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+    position: relative; /* Ensures it's positioned properly */
+}
+
+/* Grid Layout for Features */
+.energy-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin-top: 20px; /* Ensure spacing between heading and grid */
+}
+
+/* Cards */
+.energy-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 280px;
+    min-height: 220px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.energy-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.energy-card img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.energy-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.energy-card p {
+    font-size: 1rem;
+}
+
+
+/* Total Energy Management (Image Left, Text Right) */
+#total-energy {
+    flex-direction: row;
+    text-align: left;
+}
+
+#total-energy img {
+    width: 45%;
+    border-radius: 12px;
+    max-width: 600px;
+}
+
+#total-energy .text-content {
+    max-width: 50%;
+}
+
+#total-energy h2 {
+    font-size: 2.5rem;
+}
+
+#total-energy p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* About PowerSpring (Image Right, Text Left) */
+#about {
+    text-align: left;
+}
+
+#about img {
+    width: 45%;
+    border-radius: 12px;
+    max-width: 600px;
+}
+
+#about .text-content {
+    max-width: 50%;
+}
+
+#about h2 {
+    font-size: 2.5rem;
+}
+
+#about p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background-color: #112240;
+    padding: 15px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    section img {
+        width: 80%;
+        max-width: 100%;
+    }
+
+    .text-content {
+        max-width: 90%;
+    }
+
+    #total-energy,
+    #about {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #total-energy img,
+    #about img {
+        width: 80%;
+        max-width: 100%;
+    }
+}
+
+/* Fade-in effect */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typing effect */
+#hero h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid white;
+    display: inline-block;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-right: 2px solid transparent;
+    }
+}
+
