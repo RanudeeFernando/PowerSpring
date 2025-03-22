@@ -58,7 +58,7 @@ The dashboard provides insights into the following energy types:
 - **Testing Tools:** Postman (API testing)
 
 ## 🎥 Demo Video
-[![Watch the Demo](https://img.youtube.com/vi/r5lKiIhQjfo/maxresdefault.jpg)](https://www.youtube.com/watch?v=r5lKiIhQjfo)
+[![Watch the Demo](https://img.youtube.com/vi/7lqkd7pqDoI/maxresdefault.jpg)](https://www.youtube.com/watch?v=7lqkd7pqDoI)
 
 
 ## 🏗 Installation & Setup
