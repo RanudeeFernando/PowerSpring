@@ -1,6 +1,6 @@
 # ⚡ PowerSpring: Energy Dashboard & Forecasting System
 
-📌 **Overview**  
+## 📌 **Overview**  
 PowerSpring is a web-based energy analytics and forecasting dashboard that displays power production insights from multiple energy sources — including solar, wind, hydroelectric, biomass, coal, oil & gas, and nuclear. A trained Recurrent Neural Network (RNN) model predicts future electricity demand and production based on 24-hour sequences of historical energy data.
 
 This project integrates a deep learning model with a responsive dashboard built using HTML, CSS, and JavaScript, with Flask serving as the bridge between the frontend and the DL backend.
