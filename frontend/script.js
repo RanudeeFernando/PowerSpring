@@ -1,24 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("prediction-form").addEventListener("submit", function (event) {
-        event.preventDefault();
+    // ====== TOP DASHBOARD: HARDCODED VALUES + PROGRESS + STATUS ======
+    const consumption = 2000;
+    const production = 4970;
 
-        // Get user input (comma-separated values)
-        let rawInput = document.getElementById("feature-input").value;
-        let rows = rawInput.split(";")  // Split rows by semicolon (user enters 24 rows)
-            .map(row => row.split(",").map(num => parseFloat(num.trim()))); // Convert values to numbers
+    document.getElementById("gen-consumption-value").textContent = consumption + " MW";
+    document.getElementById("gen-production-value").textContent = production + " MW";
 
-        // Check if we have exactly 24 rows with 9 values each
-        if (rows.length !== 24 || !rows.every(row => row.length === 9)) {
-            alert("Please enter exactly 24 rows of 9 values each, separated by semicolons.");
-            return;
+    const maxCapacity = 7000;
+    const consumptionPercent = (consumption / maxCapacity) * 100;
+    const productionPercent = (production / maxCapacity) * 100;
+
+    document.getElementById("consumption-progress").style.width = `${consumptionPercent}%`;
+    document.getElementById("production-progress").style.width = `${productionPercent}%`;
+
+    function setStatus(percent, statusEl) {
+        if (percent < 30) {
+            statusEl.textContent = "Low";
+            statusEl.className = "badge low";
+        } else if (percent < 60) {
+            statusEl.textContent = "Normal";
+            statusEl.className = "badge normal";
+        } else if (percent < 85) {
+            statusEl.textContent = "High";
+            statusEl.className = "badge warning";
+        } else {
+            statusEl.textContent = "Critical";
+            statusEl.className = "badge critical";
         }
+    }
 
-        fetchPredictionData([rows]); // Wrap in an additional array for API
-    });
+    setStatus(consumptionPercent, document.getElementById("consumption-status"));
+    setStatus(productionPercent, document.getElementById("production-status"));
 
-    // Fetch initial data (example default 24x9 input)
-    fetchPredictionData([
-        [
+    // ====== FORECAST SECTION: SHOW ON FETCH BUTTON CLICK ======
+    const forecastContainer = document.querySelector(".prediction-container");
+    const fetchBtn = document.getElementById("fetch-btn");
+
+    fetchBtn.addEventListener("click", function () {
+        const features = [[
             [5323, 6668, 1392, 1673, 1934, 1086, 516, 0, 65], 
             [4998, 6174, 1393, 1246, 1794, 1127, 548, 0, 64], 
             [4860, 5939, 1391, 1009, 1835, 1103, 537, 0, 64], 
@@ -43,34 +62,31 @@ document.addEventListener("DOMContentLoaded", function () {
             [5991, 5855, 1395, 868, 2201, 705, 621, 0, 66], 
             [5527, 5726, 1393, 908, 2088, 648, 622, 0, 66], 
             [5111, 5551, 1391, 1011, 1845, 633, 607, 0, 66]
-        ]
-    ]);
+        ]];
+
+        fetchPredictionData(features);
+        forecastContainer.classList.remove("hidden"); // Reveal cards
+    });
 });
 
 function fetchPredictionData(featuresArray) {
     fetch("http://localhost:5000/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ features: featuresArray }) // Correct shape (1, 24, 9)
+        body: JSON.stringify({ features: featuresArray })
     })
     .then(response => response.json())
     .then(data => {
         console.log("Prediction Data:", data);
-
-        // Update UI dynamically for each energy source
         Object.keys(data).forEach(source => {
-            let value = data[source].Prediction;
-            let confidence = data[source].Confidence;
+            const value = data[source].Prediction;
+            const confidence = data[source].Confidence;
 
-            let element = document.getElementById(source.toLowerCase() + "-value");
-            if (element) {
-                element.textContent = value; // Update prediction value
-            }
+            const valueEl = document.getElementById(source.toLowerCase() + "-value");
+            const confidenceEl = document.getElementById(source.toLowerCase() + "-confidence");
 
-            let confidenceElement = document.getElementById(source.toLowerCase() + "-confidence");
-            if (confidenceElement) {
-                confidenceElement.textContent = `Confidence: ${confidence}`;
-            }
+            if (valueEl) valueEl.textContent = value;
+            if (confidenceEl) confidenceEl.textContent = `Confidence: ${confidence}`;
         });
     })
     .catch(error => console.error("Error fetching data:", error));
