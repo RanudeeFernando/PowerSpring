@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+import requests
 import numpy as np
 import tensorflow as tf
 import joblib
 from sklearn.preprocessing import StandardScaler
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load trained model and scaler
 custom_objects = {"mse": tf.keras.losses.MeanSquaredError()}
@@ -69,5 +72,95 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+
+EIA_API_KEY = "mb7gy1dnCaxNyjgUKHbKEnaQGulH0gLhJFULmfzX"
+BASE_URL = "https://api.eia.gov/series/"
+
+# Dictionary of series IDs for each energy source
+SERIES_IDS = {
+    "Consumption": "D",  # Demand (Load)
+    "Production": "NG",  # Total Net Generation
+    "Coal": "NGCOL",
+    "NaturalGas": "NGNG",
+    "Nuclear": "NGNUC",
+    "Hydro": "NGHYD",
+    "Wind": "NGWND",
+    "Solar": "NGSUN",
+    "Biomass": "NGBIO"
+}
+
+import json
+
+EIA_FUEL_TYPES = {
+    "Coal": "COL",
+    "NaturalGas": "NG",
+    "Nuclear": "NUC",
+    "Solar": "SUN",
+    "Hydro": "WAT",
+    "Wind": "WND"
+}
+
+
+# ✅ Fetch EIA Data Function
+def fetch_eia_fuel_data(hours=1):
+    try:
+        # Construct the API URL
+        params = {
+            "api_key": EIA_API_KEY,
+            "frequency": "hourly",
+            "data[0]": "value",
+            "start": "2025-03-20T00",  # Adjust for real-time later
+            "end": "2025-03-21T00",  # Adjust for real-time later
+            "sort[0][column]": "period",
+            "sort[0][direction]": "desc",
+            "offset": "0",
+            "length": str(hours)
+        }
+
+        # ✅ Add Fuel Type Filters Dynamically
+        for index, (key, fuel_type) in enumerate(EIA_FUEL_TYPES.items()):
+            params[f"facets[fueltype][{index}]"] = fuel_type
+
+        # 🔥 Send API Request
+        response = requests.get(BASE_URL, params=params)
+        data = response.json()
+
+        # ✅ Extract values
+        if "response" in data and "data" in data["response"]:
+            fuel_data = {}
+            for entry in data["response"]["data"]:
+                fuel_type = entry.get("fueltype", "Unknown")
+                fuel_value = entry.get("value", "⚠️ No Data")
+                if fuel_type in fuel_data:
+                    fuel_data[fuel_type].append(fuel_value)
+                else:
+                    fuel_data[fuel_type] = [fuel_value]
+
+            return fuel_data
+
+        return {"error": "⚠️ No valid data available"}
+
+    except Exception as e:
+        return {"error": f"⚠️ API Error: {str(e)}"}
+
+
+# ✅ API Route: Fetch Last Hour Data (for Dashboard)
+@app.route('/past-hour', methods=['GET'])
+def get_past_hour():
+    return jsonify(fetch_eia_fuel_data(1))
+
+
+# ✅ API Route: Fetch Last 24 Hours Data (for Forecasting)
+@app.route('/past-24-hours', methods=['GET'])
+def get_past_24_hours():
+    return jsonify(fetch_eia_fuel_data(24))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+

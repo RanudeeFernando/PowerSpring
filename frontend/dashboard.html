@@ -6,6 +6,7 @@
     <title>PowerSpring Dashboard</title>
     <link rel="icon" type="image/png" href="images/logos/logo2.png">
     <link rel="stylesheet" href="dash-styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -23,19 +24,43 @@
     </header>
     
     <section id="dashboard">
-        <h2>Energy Dashboard</h2>
+        <h2>Electricity Dashboard</h2>
         <div class="dashboard-container">
-            <div class="card" id="consumption">
-                <h3>Consumption</h3>
-                <p><span id="consumption-value">--</span> MW</p>
+            <div class="card">
+                <h3>Total Consumption (Last Hour)</h3>
+                <p><span id="consumption-value">--</span></p>
             </div>
-            <div class="card" id="production">
-                <h3>Production</h3>
-                <p><span id="production-value">--</span> MW</p>
+            <div class="card">
+                <h3>Total Production (Last Hour)</h3>
+                <p><span id="production-value">--</span></p>
             </div>
-            <div class="card" id="prediction">
-                <h3>AI Prediction</h3>
-                <p><span id="prediction-value">--</span> MW</p>
+            <div class="card">
+                <h3>Coal Power</h3>
+                <p><span id="coal-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Natural Gas</h3>
+                <p><span id="naturalgas-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Nuclear Power</h3>
+                <p><span id="nuclear-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Hydropower</h3>
+                <p><span id="hydro-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Wind Power</h3>
+                <p><span id="wind-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Solar Power</h3>
+                <p><span id="solar-value">--</span></p>
+            </div>
+            <div class="card">
+                <h3>Biomass Power</h3>
+                <p><span id="biomass-value">--</span></p>
             </div>
         </div>
     </section>
@@ -54,6 +79,5 @@
         <p>&copy; 2025 PowerSpring. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
