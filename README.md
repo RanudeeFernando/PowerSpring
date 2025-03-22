@@ -5,7 +5,6 @@ PowerSpring is a web-based energy analytics and forecasting dashboard that displ
 
 This project integrates a deep learning model with a responsive dashboard built using HTML, CSS, and JavaScript, with Flask serving as the bridge between the frontend and the DL backend.
 
----
 
 ## 🚀 Features
 
@@ -16,7 +15,6 @@ This project integrates a deep learning model with a responsive dashboard built 
 - Flask-based backend API to communicate with the DL model
 - Postman used to test backend API endpoints
 
----
 
 ## 🧠 Deep Learning Model
 
@@ -37,7 +35,6 @@ A Recurrent Neural Network (RNN) was trained using a publicly available dataset 
 
 Model was trained and evaluated in **Jupyter Notebook**, with full exploratory data analysis and visualizations.
 
----
 
 ## 💡 Energy Sources Tracked
 
@@ -51,9 +48,6 @@ The dashboard provides insights into the following energy types:
 - 🪨 **Coal** – Forecasting with attention to resource efficiency  
 - 🌱 **Biomass** – Sustainable source production monitoring  
 
-![Energy Source Cards](./image.png)
-
----
 
 ## 🧰 Tech Stack
 
@@ -63,7 +57,9 @@ The dashboard provides insights into the following energy types:
 - **Model Type:** Recurrent Neural Network (RNN)
 - **Testing Tools:** Postman (API testing)
 
----
+## 🎥 Demo Video
+[![Watch the Demo](https://img.youtube.com/vi/r5lKiIhQjfo/maxresdefault.jpg)](https://www.youtube.com/watch?v=r5lKiIhQjfo)
+
 
 ## 🏗 Installation & Setup
 
